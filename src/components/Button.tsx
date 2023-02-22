@@ -1,19 +1,27 @@
 import React from 'react'
-import styles from "@styles/components.module.scss"
+import styles from "../styles/components.module.scss"
 
-interface IButton {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     onClick: () => void
     text: string
+    btnType?: "delete" | "edit" | ""
+    className?: string
 }
 
-export const Button = ({onClick, text}: IButton) => {
-  return (
-    <>
-    <button className={styles.primary_button}
-        onClick={onClick}
-    >
+export const Button = ({
+	text,
+  className,
+	...rest
+}: ButtonProps) => {
+
+	return (
+		<div className={styles.button_container}>
+      <button
+        {...rest}
+        className={className ? className : styles.primary_button}
+      >
         {text}
-    </button>
-    </>
-  )
-}
+      </button>
+    </div>
+	);
+};

@@ -1,0 +1,49 @@
+@use 'sass:math';
+
+@mixin flex($direction, $justify, $align) {
+	display: flex;
+	flex-direction: $direction;
+	justify-content: $justify;
+	align-items: $align;
+}
+
+// break points
+@mixin screen($size) {
+	@if ($size == ("mac-13")) {
+		@media screen and (max-width: 1440px) {
+			@content;
+		}
+	}
+	@if ($size == "x-large") {
+		@media screen and (max-width: 1280px) {
+			@content;
+		}
+	}
+	@if ($size == "large") {
+		@media screen and (max-width: 1024px) {
+			@content;
+		}
+	}
+	@if ($size == "medium") {
+		@media screen and (max-width: 991px) {
+			@content;
+		}
+	}
+	@if ($size == "mobile") {
+		@media screen and (max-width: 767.99px) {
+			@content;
+		}
+	} @else if($size == "small") {
+		@media screen and (max-width: 576px) {
+			@content;
+		}
+	} @else if($size == "x-small") {
+		@media screen and (max-width: 414px) {
+			@content;
+		}
+	} @else if($size == $size) {
+		@media screen and (max-width: $size) {
+			@content;
+		}
+	}
+}
