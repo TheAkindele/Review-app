@@ -22,7 +22,7 @@ Run `yarn dev` or `npm run dev` to start the app in development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Demo
-View the demo on [https://sora-union-rockets-the-akindele.vercel.app/] (https://sora-union-rockets-the-akindele.vercel.app/)
+View the demo on [https://sora-union-rockets-the-akindele.vercel.app/] 
 
 
 ## Contact
