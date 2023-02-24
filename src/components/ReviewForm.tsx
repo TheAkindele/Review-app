@@ -12,9 +12,11 @@ import axios from "axios"
 interface IFormProps {
   editObj?: IRocketReviewItem
   setSingleRocket?: Dispatch<SetStateAction<IRocketReviewItem | undefined>>
+  setEdit: Dispatch<SetStateAction<boolean>>
+  editCard: Boolean
 }
 
-export const ReviewForm = ({editObj, setSingleRocket}: IFormProps) => {
+export const ReviewForm = ({editObj, setSingleRocket, setEdit, editCard}: IFormProps) => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [rocketName, setRocketName] = useState("")
@@ -25,7 +27,7 @@ export const ReviewForm = ({editObj, setSingleRocket}: IFormProps) => {
   const [avatar, setAvatar] = useState("")
   const [selectedValue, setSelectedValue] = useState<IUser | undefined>() 
 
-  const [debounceValue] = useDebounce(keyword, 200)
+  const [debounceValue] = useDebounce(keyword, 500)
 
   const {addReview, editReview} = useContext(AppContext)
 
@@ -48,7 +50,7 @@ export const ReviewForm = ({editObj, setSingleRocket}: IFormProps) => {
   )
 
   const createRocketReview = () => {
-    if (editObj && Object.keys(editObj).length) {
+    if (editCard && editObj ) { 
       let reviewDetails = {...editObj}
       if (title) Object.defineProperties(reviewDetails, {title: {value: title, writable: true, enumerable: true}})
       if (rocketName) Object.defineProperties(reviewDetails, {rocketName: {value: rocketName, writable: true, enumerable: true}})
@@ -62,6 +64,8 @@ export const ReviewForm = ({editObj, setSingleRocket}: IFormProps) => {
      
       editReview(reviewDetails)
       setSingleRocket && setSingleRocket({username: "", id: "", description: "", title: "", rocketName: ""})
+      setEdit(false)
+      // 
     }
     
     else {

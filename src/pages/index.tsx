@@ -8,7 +8,8 @@ import { IRocketReviewItem } from '@/utils'
 
 export default function Home() {
   const {reviewArray} = useContext(AppContext)
-  const [singleRocket, setSingleRocket] = useState<IRocketReviewItem>()
+  const [singleRocket, setSingleRocket] = useState<IRocketReviewItem | undefined>()
+  const [editCard, setEditCard] = useState(false) 
 
 
   return (
@@ -35,13 +36,14 @@ export default function Home() {
                 rocketName={item.rocketName}
                 onClick={() => {
                   setSingleRocket(item)
+                  setEditCard(true)
                 }}
               />
             ))}
           </section>}
           <section className={styles.home_section}>
-            <h4>{singleRocket ? "Edit Rocket" : "Create Rocket"}</h4>
-            <ReviewForm editObj={singleRocket} setSingleRocket={setSingleRocket} />
+            <h4>{editCard ? "Edit Rocket" : "Create Rocket"}</h4>
+            <ReviewForm editObj={singleRocket} setSingleRocket={setSingleRocket} editCard={editCard} setEdit={setEditCard} />
           </section>
         </main>
       </main>

@@ -12,7 +12,6 @@ export const AutocompleteSearchDropdown = ({label, keyword, value, setKeyword, s
                     <input
                         type="text"
                         value={keyword ? keyword : value}
-                        // onChange={(e) => setKeyword(e.target.value)}
                         placeholder={placeholder}
                         onChange={(e) => setKeyword(e.target.value)}
                         className={styles.select_input}
